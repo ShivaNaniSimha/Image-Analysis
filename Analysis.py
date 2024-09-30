@@ -3,10 +3,11 @@ from pymongo import MongoClient
 from PIL import Image
 import google.generativeai as genai
 from key import gemini_api_key
+from pymongo.errors import ServerSelectionTimeoutError
 
 
 # Connect to MongoDB
-client = MongoClient('mongodb://localhost:27017/')  # Change this to your MongoDB URI
+client = MongoClient('mongodb://localhost:27017/',ServerSelectionTimeoutMs=5000)  # Change this to your MongoDB URI
 db = client['project']
 collection = db['users']
 
